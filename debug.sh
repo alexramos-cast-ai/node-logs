@@ -4,7 +4,7 @@
 # exec into each daemonset pods to collect the journalctl logs output
 
 # Deploy daemonset debugger-sh.yaml
-kubectl apply -f debugger-ds.yaml
+kubectl apply -f https://github.com/alexramos-cast-ai/node-logs/blob/main/debugger-ds.yaml
 sleep 10
 
 # Get all debuggerds pods
@@ -16,4 +16,4 @@ for POD in $NODELOGDS; do
     kubectl exec -n castai-agent $POD -- chroot /host /bin/bash -c "journalctl -u kubelet" > $POD-kubelet.log
 done
 
-kubectl delete -f debugger-ds.yaml --now
+kubectl delete -f https://github.com/alexramos-cast-ai/node-logs/blob/main/debugger-ds.yaml --now
